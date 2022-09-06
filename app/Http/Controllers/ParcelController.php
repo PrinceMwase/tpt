@@ -36,7 +36,12 @@ class ParcelController extends Controller
      */
     public function store(StoreParcelRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $parcel = Parcel::create( $validated );
+
+        return $parcel;
+
     }
 
     /**

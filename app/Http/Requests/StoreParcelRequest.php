@@ -13,7 +13,7 @@ class StoreParcelRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreParcelRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "contents" => "required|string",
+            "weight_in_kg" => "required|integer",
+            "quantity" => "required|integer"
         ];
     }
 }

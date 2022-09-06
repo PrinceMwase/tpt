@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Parcel extends Model
 {
     use HasFactory;
+    protected $fillable = ['contents', 'weight_in_kg', 'quantity'];
 }

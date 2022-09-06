@@ -86,4 +86,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Parcel resource routes
-Route::resource('photos', ParcelController::class)->middleware(['auth:sanctum']);
+Route::resource('parcel', ParcelController::class)->middleware(['auth:sanctum']);
