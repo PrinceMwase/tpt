@@ -7,6 +7,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ParcelController;
+
 
 
 /*
@@ -82,3 +84,6 @@ Route::post("/sanctum/register", function(Request $request) {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Parcel resource routes
+Route::resource('photos', ParcelController::class)->middleware(['auth:sanctum']);
