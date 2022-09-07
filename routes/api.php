@@ -87,7 +87,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Parcel resource routes
-Route::resource('parcel', ParcelController::class)->middleware(['auth:sanctum']);
+Route::apiResource('parcel', ParcelController::class)->middleware(['auth:sanctum']);
 
 // Transaction resource routes
-Route::resource('transaction', TransactionController::class)->middleware(['auth:sanctum']);
+Route::apiResource('transaction', TransactionController::class)->middleware(['auth:sanctum']);

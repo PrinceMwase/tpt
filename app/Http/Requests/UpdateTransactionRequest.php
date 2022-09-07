@@ -13,7 +13,7 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->role->role == 'agent';
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateTransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "status" => "required|in:delivered,In Transit,verified",
+            "waybill_number" => "required|string",
+            "amount" => "required|integer"
         ];
     }
 }

@@ -20,4 +20,9 @@ class Transaction extends Model
         "district",
         "payment_term"
     ];
+
+    // relationships
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 }

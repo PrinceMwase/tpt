@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\User;
 use App\Notifications\ServiceRequest;
+use App\Notifications\ServiceStatus;
 use Illuminate\Support\Facades\Notification;
 
 class TransactionController extends Controller
@@ -88,6 +89,18 @@ class TransactionController extends Controller
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
         //
+        
+        $validated = $request->validated();
+
+        $transaction->status = $validated["status"];
+        $transaction->waybill_number = $validated["waybill_number"];
+        $transaction->amount = $validated["amount"];
+
+        $transaction->save();
+
+        Notification::send( $transaction->customer->user, new ServiceStatus( $validated["status"] , $transaction->id ) );
+
+        return $transaction;
     }
 
     /**
