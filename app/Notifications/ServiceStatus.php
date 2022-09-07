@@ -16,9 +16,11 @@ class ServiceStatus extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($status, $service)
     {
         //
+        $this->status = $status;
+        $this->service = $service;
     }
 
     /**
@@ -29,7 +31,7 @@ class ServiceStatus extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +57,8 @@ class ServiceStatus extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            "status" => $this->status,
+            "service" => $this->service
         ];
     }
 }
