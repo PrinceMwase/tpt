@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ParcelController;
+use App\Http\Controllers\TransactionController;
 
 
 
@@ -87,3 +88,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Parcel resource routes
 Route::resource('parcel', ParcelController::class)->middleware(['auth:sanctum']);
+
+// Transaction resource routes
+Route::resource('transaction', TransactionController::class)->middleware(['auth:sanctum']);
