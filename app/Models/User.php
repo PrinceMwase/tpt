@@ -21,6 +21,14 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
     /**
+     * relationships
+     */
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]

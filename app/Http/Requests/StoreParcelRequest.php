@@ -13,7 +13,7 @@ class StoreParcelRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->role->role == 'customer';
     }
 
     /**

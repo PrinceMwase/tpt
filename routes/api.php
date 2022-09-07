@@ -80,7 +80,7 @@ Route::post("/sanctum/register", function(Request $request) {
     return $user->createToken($request->device_name)->plainTextToken;
 } );
 
-// get currrent User
+// get current User
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
