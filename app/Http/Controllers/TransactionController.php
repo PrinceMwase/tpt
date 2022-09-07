@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use App\Models\User;
+use App\Notifications\ServiceRequest;
+use Illuminate\Support\Facades\Notification;
 
 class TransactionController extends Controller
 {
@@ -37,11 +40,18 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request)
     {
         //
-        
         $validated = $request->validated();
 
-        
         $transaction = Transaction::create( $validated );
+
+        $admin = User::find(1);
+
+        if( $transaction ){
+            Notification::send( $admin, new ServiceRequest( 
+                Auth()->user()->id,
+                $transaction->id
+             ) );
+        }
 
         return $transaction;
     }

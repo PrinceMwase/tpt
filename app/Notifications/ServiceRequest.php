@@ -16,9 +16,11 @@ class ServiceRequest extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($customer, $transaction)
     {
-        //
+        $this->customer = $customer;
+        $this->transaction = $transaction;
+
     }
 
     /**
@@ -29,7 +31,7 @@ class ServiceRequest extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +57,8 @@ class ServiceRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            "customer_id" => $this->customer,
+            "service" => $this->transaction
         ];
     }
 }
