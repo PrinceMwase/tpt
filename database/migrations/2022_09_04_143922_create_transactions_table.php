@@ -21,8 +21,9 @@ class CreateTransactionsTable extends Migration
             $table->enum('status', [
                 "delivered",
                 "In Transit",
-                "verified"
-            ] );
+                "verified",
+                "unverified"
+            ] )->default("unverified");
 
             // sender fields to fill
             $table->enum('service_type', [
